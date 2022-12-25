@@ -11,9 +11,12 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import { TopCharts } from "../pages";
 
-const TopChartCard = ({ song, index }) => (
+const TopChartCard = ({ song, i }) => (
   <div className="w-full flex flex-row items-center hover:bg-[#4c426e] py-2 p-4 rounded-lg cursor-pointer mb-2">
-    {song.title}
+    <h3 className="font-bold text-base text-white mr-3">{i + 1}</h3>
+    <div className="flex-1 flex-row justify-between items-center">
+      <img className="w-20 h-20 rounded-lg" src={song?.images?.coverart} alt={song?.title} />
+    </div>
   </div>
 );
 
@@ -71,15 +74,21 @@ const TopPlay = () => {
           modules={[FreeMode]}
           className="mt-4"
         >
-          {/* {topPlays.map((song, i) => (
+          {topPlays?.map((song, i) => (
             <SwiperSlide
               key={song?.key}
               style={{ width: "25%", height: "auto" }}
               className="shadow-lg rounded-full animate-slideright"
-            > */}
-          {/* <Link></Link>
+            >
+              <Link to={`/artists/${song?.artists[0].adamid}`}>
+                <img
+                  src={song.images?.background}
+                  alt="name"
+                  className="rounded-full w-full object-cover"
+                />
+              </Link>
             </SwiperSlide>
-          ))} */}
+          ))}
         </Swiper>
       </div>
     </div>
